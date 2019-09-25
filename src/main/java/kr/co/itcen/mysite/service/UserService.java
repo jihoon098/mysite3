@@ -1,8 +1,11 @@
 package kr.co.itcen.mysite.service;
 
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.itcen.mysite.exception.UserDaoException;
 import kr.co.itcen.mysite.repository.UserDao;
 import kr.co.itcen.mysite.vo.UserVo;
 
@@ -13,18 +16,10 @@ public class UserService {
 	private UserDao userDao;
 
 	public void join(UserVo vo) {
-		userDao.insert(vo);
+			userDao.insert(vo);
 	}
 
 	public UserVo getUser(UserVo vo) {
 		return userDao.get(vo);
-	}
-	
-	public UserVo getEmail(UserVo vo) {
-		return userDao.getEmail(vo);
-	}
-	
-	public Boolean update(UserVo vo) {
-		return userDao.update(vo);
 	}
 }
