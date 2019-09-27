@@ -24,4 +24,11 @@ public class GuestbookService {
 		guestbookDao.insert(vo);
 	}
 
+
+	/*
+	 * public void delete() { guestbookDao.delete(vo);
+	 * 
+	 * }
+	 */
+
 }

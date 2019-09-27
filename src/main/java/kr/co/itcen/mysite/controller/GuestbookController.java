@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.itcen.mysite.service.GuestbookService;
 import kr.co.itcen.mysite.vo.GuestbookVo;
@@ -36,6 +37,14 @@ public class GuestbookController {
 		
 		return "/guestbook/list";
 	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public String list(@RequestParam(value="no", required = false)Long no) {
+		System.out.println(no);
+		//guestbookService.delete();
+		return "/guestbook";
+	}
+	
 
 	
 }

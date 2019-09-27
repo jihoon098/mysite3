@@ -24,7 +24,7 @@ public class UserDao {
 	}
 	
 	public UserVo get(Long no) {
-		return null;
+		return sqlSession.selectOne("user.getByNo", no);
 	}
 	
 	public UserVo get(UserVo vo) {
@@ -39,5 +39,10 @@ public class UserDao {
 		
 		UserVo result = sqlSession.selectOne("user.getByEmailAndPassword2", map);
 		return result;		
+	}
+	
+	public Boolean update(UserVo vo) {
+		int count = sqlSession.update("user.update", vo);
+		return count == 1;
 	}
 }

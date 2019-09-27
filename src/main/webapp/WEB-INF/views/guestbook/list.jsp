@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +43,7 @@
 								<td>[${count - status.index}]</td>
 								<td>${guestbookVo.name}</td>
 								<td>${guestbookVo.regDate}</td>
-								<td><a href="${pageContext.servletContext.contextPath }/guestbook?a=delete&no=${guestbookVo.no}">삭제</a></td>
+								<td><a href="${pageContext.servletContext.contextPath }/guestbook/delete/${guestbookVo.no}">삭제</a></td>
 							</tr>
 							<tr> 
 								<td colspan=4>${fn:replace(guestbookVo.contents, newline, '<br>') }
