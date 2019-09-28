@@ -16,9 +16,8 @@
 		<div id="content">
 			<div id="guestbook">
 				
-				<form method='post' action='${pageContext.servletContext.contextPath }/guestbook'>
-					<input type='hidden' name="a" value='delete'> 
-					<input type='hidden' name="no" value='${param.no }'>
+				<form method='post' action='${pageContext.servletContext.contextPath }/guestbook/delete'>
+					<input type='hidden' name="no" value='${no }'>
 					<table>
 						<tr>
 							<td>비밀번호</td>

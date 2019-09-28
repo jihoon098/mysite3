@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>mysite3</title>
+<title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="${pageContext.servletContext.contextPath }/assets/css/board.css" rel="stylesheet" type="text/css">
 </head>
@@ -29,22 +29,37 @@
 						<th>작성일</th>
 						<th>&nbsp;</th>
 					</tr>
+				
 					
-					
-					<!-- 게시판에 있는 글 보여주기-->
-					<c:set var = "count" value = '${fn:length(list) }'/>
-					<c:forEach items = '${list }' var = 'boardVo' varStatus='status'  >
+					<!-- 게시판에 있는 글 보여주기-->				
+					<c:choose>
+						<c:when test='${fn:length(list) <= page*10}'>
+							<c:set var = "count" value = '${fn:length(list) }'/>
+						</c:when>
+						<c:otherwise>
+							<c:set var = "count" value = '${page*10 }'/>
+						</c:otherwise>
+					</c:choose>
+
+					<c:forEach items = '${list }' var = 'boardVo' begin='${page*10-10 }' end='${count-1 }' step='1' varStatus='status'>
 						<tr>
 							<td>${count - status.index }</td>
+
+							<c:choose>
+								<c:when test='${boardVo.oNo == 1}'>
+									<td style="text-align:left"><a href="${pageContext.servletContext.contextPath}/board?a=view&no=${boardVo.no}">${boardVo.title }</a></td>
+								</c:when>
+								<c:otherwise>
+									<td class="label" style="padding-left:${30*boardVo.depth-20}px;text-align:left">
+								<img src="${pageContext.servletContext.contextPath }/assets/images/reply.png" style='padding-left:${40*boardVo.depth}px'/>
+								<a href="${pageContext.servletContext.contextPath}/board?a=view&no=${boardVo.no}">${boardVo.title }</a></td>
+								</c:otherwise>
+							</c:choose>
+
 							
-							<%-- <td style='padding-left:${40*vo.depth}px'>
-								<img src="${pageContext.servletContext.contextPath }/assets/images/reply.png" style='padding-left:${40*vo.depth}px'/>
-								<a href="${pageContext.servletContext.contextPath}/board?a=view&no=${boardVo.no}">${boardVo.title }</a>
-							</td> --%>
-							<td><a href="${pageContext.servletContext.contextPath}/board?a=view&no=${boardVo.no}">${boardVo.title }</a></td>
-							<td>${boardVo.user_name }</td>
+							<td>${boardVo.userName }</td>
 							<td>${boardVo.hit }</td>
-							<td>${boardVo.reg_date }</td>
+							<td>${boardVo.regDate }</td>
 
 							<c:choose>
 								<c:when test='${empty authUser}'>
@@ -53,7 +68,7 @@
 								<c:otherwise>
 									<!-- authUser.no와 board.user_no가 같으면!!! 보여줘야함. -->
 									<c:choose>
-										<c:when test='${authUser.no == boardVo.user_no }'>
+										<c:when test='${authUser.no == boardVo.userNo }'>
 											<td><a href="${pageContext.servletContext.contextPath}/board?a=delete&no=${boardVo.no}" class="del">삭제</a></td>
 										</c:when>
 										<c:otherwise>
@@ -69,23 +84,36 @@
 					
 				</table>
 				
-				<!-- pager 추가 -->
+				
+				<!-- pageing -->
+				<!-- <c:set var = "pageCount" value = '${fn:length(list)/10 + 1 }'/> -->
 				<div class="pager">
 					<ul>
-						<li><a href="">◀</a></li>
-						<li><a href="">1</a></li>
-						<li class="selected">2</li>
-						<li><a href="">3</a></li>
-						<li>4</li>
-						<li>5</li>
-						<li><a href="">▶</a></li>
+
+						<c:choose>
+							<c:when test="${(page%5) eq 1 }">
+								<c:set var = "pageCount" value = '${page }'/>
+							</c:when>
+							<c:otherwise>
+								<c:set var = "pageCount" value = '${page-(page%5-1) }'/>
+							</c:otherwise>
+						</c:choose>
+						
+						<li><a href="${pageContext.servletContext.contextPath}/board?page=${page-1 }">◀</a></li>
+						
+						<c:forEach var = "page" begin = '${pageCount }' end = '${fn:length(list)/10+1 }' varStatus='status'>			
+							<li><a href="${pageContext.servletContext.contextPath}/board?page=${page }">${page }</a></li>
+						</c:forEach>
+
+						<li><a href="${pageContext.servletContext.contextPath}/board?page=${page+1 }">▶</a></li>
+						
 					</ul>
 				</div>					
 				<!-- pager 추가 -->
 				
 				<div class="bottom">
 					<c:if test='${!empty authUser}'>
-						<a href="${pageContext.servletContext.contextPath }/board?a=writeform" id="new-book">글쓰기</a>
+						<a href="${pageContext.servletContext.contextPath }/board/writeform" id="new-book">글쓰기</a>
 					</c:if>
 				</div>
 			

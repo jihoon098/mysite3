@@ -6,12 +6,12 @@ public class BoardVo {
 	String title;
 	String contents;
 	Long hit;
-	String reg_date;
-	Long g_no;
-	Long o_no;
+	String regDate;
+	Long gNo;
+	Long oNo;
 	Long depth;
-	Long user_no;
-	String user_name;
+	Long userNo;
+	String userName;
 	
 	public Long getNo() {
 		return no;
@@ -37,23 +37,23 @@ public class BoardVo {
 	public void setHit(Long hit) {
 		this.hit = hit;
 	}
-	public String getReg_date() {
-		return reg_date;
+	public String getRegDate() {
+		return regDate;
 	}
-	public void setReg_date(String reg_date) {
-		this.reg_date = reg_date;
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
-	public Long getG_no() {
-		return g_no;
+	public Long getgNo() {
+		return gNo;
 	}
-	public void setG_no(Long g_no) {
-		this.g_no = g_no;
+	public void setgNo(Long gNo) {
+		this.gNo = gNo;
 	}
-	public Long getO_no() {
-		return o_no;
+	public Long getoNo() {
+		return oNo;
 	}
-	public void setO_no(Long o_no) {
-		this.o_no = o_no;
+	public void setoNo(Long oNo) {
+		this.oNo = oNo;
 	}
 	public Long getDepth() {
 		return depth;
@@ -61,23 +61,24 @@ public class BoardVo {
 	public void setDepth(Long depth) {
 		this.depth = depth;
 	}
-	public Long getUser_no() {
-		return user_no;
+	public Long getUserNo() {
+		return userNo;
 	}
-	public void setUser_no(Long user_no) {
-		this.user_no = user_no;
+	public void setUserNo(Long userNo) {
+		this.userNo = userNo;
 	}
-	public String getUser_name() {
-		return user_name;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	@Override
 	public String toString() {
-		return "BoardVo [no=" + no + ", title=" + title + ", contents=" + contents + ", hit=" + hit + ", reg_date="
-				+ reg_date + ", g_no=" + g_no + ", o_no=" + o_no + ", depth=" + depth + ", user_no=" + user_no + "]";
+		return "BoardVo [no=" + no + ", title=" + title + ", contents=" + contents + ", hit=" + hit + ", regDate="
+				+ regDate + ", gNo=" + gNo + ", oNo=" + oNo + ", depth=" + depth + ", userNo=" + userNo + ", userName="
+				+ userName + "]";
 	}
-
+	
 }

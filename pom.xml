@@ -113,8 +113,8 @@
 	</dependencies>
 
 	<build>
-		<sourceDirectory>src/main/java</sourceDirectory>
 		<finalName>mysite3</finalName>
+		<sourceDirectory>src/main/java</sourceDirectory>
 		<resources>
 			<resource>
 				<directory>${project.basedir}/src/main/resources</directory>
