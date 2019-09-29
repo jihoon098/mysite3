@@ -18,13 +18,20 @@ public class BoardService {
 		return boardDao.getList(kwd);
 	}
 	
-	
 	public void write(BoardVo vo) {
 		boardDao.insertBoard(vo);
 	}
-	
-	public void insert(BoardVo vo) {
-		boardDao.insertBoard(vo);
-	}
 
+	public BoardVo get(Long no) {
+		return boardDao.getBoard(no);
+	}
+	
+	public Boolean delete(Long no) {
+		return boardDao.deleteBoard(no);
+	}
+	
+	public Boolean modify(BoardVo vo) {
+		return boardDao.modifyContents(vo);
+	}
+	
 }

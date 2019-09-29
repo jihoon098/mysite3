@@ -49,7 +49,7 @@
         </if>       
 		<![CDATA[
                gender = #{gender }
-         where no = #{no }
+        where no = #{no }
 		]]>
 	</update>
 

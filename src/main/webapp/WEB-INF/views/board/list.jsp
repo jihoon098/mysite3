@@ -47,12 +47,12 @@
 
 							<c:choose>
 								<c:when test='${boardVo.oNo == 1}'>
-									<td style="text-align:left"><a href="${pageContext.servletContext.contextPath}/board?a=view&no=${boardVo.no}">${boardVo.title }</a></td>
+									<td style="text-align:left"><a href="${pageContext.servletContext.contextPath}/board/view/${boardVo.no}">${boardVo.title }</a></td>
 								</c:when>
 								<c:otherwise>
 									<td class="label" style="padding-left:${30*boardVo.depth-20}px;text-align:left">
-								<img src="${pageContext.servletContext.contextPath }/assets/images/reply.png" style='padding-left:${40*boardVo.depth}px'/>
-								<a href="${pageContext.servletContext.contextPath}/board?a=view&no=${boardVo.no}">${boardVo.title }</a></td>
+									<img src="${pageContext.servletContext.contextPath }/assets/images/reply.png" style='padding-left:${40*boardVo.depth}px'/>
+									<a href="${pageContext.servletContext.contextPath}/board/view/${boardVo.no}">${boardVo.title }</a></td>
 								</c:otherwise>
 							</c:choose>
 
@@ -69,7 +69,12 @@
 									<!-- authUser.no와 board.user_no가 같으면!!! 보여줘야함. -->
 									<c:choose>
 										<c:when test='${authUser.no == boardVo.userNo }'>
-											<td><a href="${pageContext.servletContext.contextPath}/board?a=delete&no=${boardVo.no}" class="del">삭제</a></td>
+											<!-- class="del"이 갑자기 안먹힘..왜지??? -->
+											<td>
+												<a href="${pageContext.servletContext.contextPath}/board/delete/${boardVo.no}" class="del">
+													<img src="${pageContext.servletContext.contextPath }/assets/images/recycle.png" />삭제
+												</a>
+											</td>
 										</c:when>
 										<c:otherwise>
 											<td><a href="" class=""></a></td>

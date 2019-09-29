@@ -153,75 +153,17 @@ public class BoardDao {
 		
 		return vo;
 	}
-	
-	
-	public void deleteBoard(long no) {
-		//게시물 삭제여부를 알려주는 status를 1(삭제)로 변경
-		Connection connection = null;
-		PreparedStatement pstmt = null;
-		
-		try {
-			connection = getConnection();
-			
-			String sql = 
-				"   update board set title = '삭제된 게시물 입니다.', contents = '',status = 1" +
-				" where no = ?";
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setLong(1, no);
-			
-			pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			System.out.println("error:" + e);
-		} finally {
-			try {
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				if(connection != null) {
-					connection.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
 
+	public Boolean deleteBoard(Long no){
+		//게시물 삭제여부를 알려주는 status를 1(삭제)로 변경
+		int count = sqlSession.update("board.deleteBoard", no);
+		return count == 1;
 	}
 	
 	
-	
-	public void modifyContents(Long no, String title, String contents, Long user_no) {
-		Connection connection = null;
-		PreparedStatement pstmt = null;
-
-		try {
-			connection = getConnection();
-
-			String sql = 
-					"   update board set title = ?, contents = ?" +
-							" where no = ? and user_no = ?";
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setString(1, title);
-			pstmt.setString(2, contents);
-			pstmt.setLong(3, no);
-			pstmt.setLong(4, user_no);
-
-			pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			System.out.println("error:" + e);
-		} finally {
-			try {
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				if(connection != null) {
-					connection.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+	public Boolean modifyContents(BoardVo vo) {
+		int count = sqlSession.update("board.modifyContents", vo);
+		return count == 1;
 	}
 	
 	

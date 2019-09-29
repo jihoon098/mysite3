@@ -6,11 +6,11 @@
 		<![CDATA[
 		select a.no, 
 			   a.title, 
-			   b.name, 
+			   b.name as userName, 
 			   a.hit,
 			   date_format(a.reg_date, '%Y-%m-%d %h:%i:%s') as regDate, 
-			   a.user_no, 
-			   a.o_no, 
+			   a.user_no as userNo, 
+			   a.o_no as oNo, 
 			   a.depth 
 		 from board a, user b 
 		 where a.user_no = b.no 
@@ -18,6 +18,27 @@
 		 order by g_no desc, o_no asc;
 		 ]]>
 	</select>
+	
+	
+	<update id="deleteBoard" parameterType="long">
+		<![CDATA[
+			update board 
+			set title = '삭제된 게시물 입니다.',
+				contents = '',
+				status = 1
+			where no = #{no};
+		]]>
+	</update>
+	
+	
+	<update id="modifyContents" parameterType="boardvo">
+		<![CDATA[
+			update board 
+			set title = #{title},
+				contents = #{contents}
+			where no = #{no} and user_no = #{userNo};
+		]]>
+	</update>
 
 </mapper>
 
