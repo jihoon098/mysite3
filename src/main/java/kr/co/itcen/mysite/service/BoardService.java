@@ -19,11 +19,16 @@ public class BoardService {
 	}
 	
 	public void write(BoardVo vo) {
+		vo.setoNo(vo.getoNo() + 1L);
+		vo.setDepth(vo.getDepth() + 1L);
+		boardDao.updateOnoDepth(vo);
 		boardDao.insertBoard(vo);
 	}
 
 	public BoardVo get(Long no) {
-		return boardDao.getBoard(no);
+		boardDao.updateHitForView(no);
+		return boardDao.viewBoard(no);
+		
 	}
 	
 	public Boolean delete(Long no) {

@@ -30,7 +30,7 @@
 		]]>
 	</update>
 	
-	
+
 	<update id="modifyContents" parameterType="boardvo">
 		<![CDATA[
 			update board 
@@ -39,6 +39,56 @@
 			where no = #{no} and user_no = #{userNo};
 		]]>
 	</update>
+	
+	<update id="updateOnoDepth" parameterType="boardvo">
+		<![CDATA[
+			update board 
+			set o_no=o_no+1 
+			where g_no = #{gNo} and o_no >= #{oNo};
+		]]>
+	</update>
+
+	<insert id ="insertBoard" parameterType="boardvo">
+		<choose>
+			<when test = " gNo == 0 ">
+				<![CDATA[
+					insert into board 
+					values(null, #{title}, #{contents}, 0, now(), (select ifnull (max(g_no+1), 1) from board as a), 1, 0, #{userNo}, 0);
+				]]>		
+			</when>
+			<otherwise>
+				<![CDATA[
+					insert into board 
+					values(null, #{title}, #{contents}, 0, now(), #{gNo}, #{oNo}, #{depth}, #{userNo}, 0);
+				]]>	
+			</otherwise>
+		</choose>
+	</insert>
+	
+	<update id = "updateHitForView" parameterType="long">
+		<![CDATA[
+			update board 
+			set hit=hit+1 
+			where no = #{no}
+		]]>
+	</update>
+	
+	<select id="viewBoard" parameterType="long" resultType="boardvo">
+		<![CDATA[
+			select no,
+				   title, 
+				   contents, 
+				   user_no as userNo, 
+				   g_no as gNo, 
+				   o_no as oNo, 
+				   depth
+			from board
+			where no = #{no};
+		]]>
+	</select>
+	
+	
+
 
 </mapper>
 
