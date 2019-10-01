@@ -69,12 +69,7 @@
 									<!-- authUser.no와 board.user_no가 같으면!!! 보여줘야함. -->
 									<c:choose>
 										<c:when test='${authUser.no == boardVo.userNo }'>
-											<!-- class="del"이 갑자기 안먹힘..왜지??? -->
-											<td>
-												<a href="${pageContext.servletContext.contextPath}/board/delete/${boardVo.no}" class="del">
-													<img src="${pageContext.servletContext.contextPath }/assets/images/recycle.png" />삭제
-												</a>
-											</td>
+											<td><a href="${pageContext.servletContext.contextPath}/board/delete/${boardVo.no}" class="del">삭제</a></td>
 										</c:when>
 										<c:otherwise>
 											<td><a href="" class=""></a></td>

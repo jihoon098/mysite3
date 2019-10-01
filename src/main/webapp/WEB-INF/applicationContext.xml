@@ -15,8 +15,10 @@
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 	<context:annotation-config />
 	
+	<aop:aspectj-autoproxy />
+	
 	<context:component-scan
-		base-package="kr.co.itcen.mysite.service, kr.co.itcen.mysite.repository">
+		base-package="kr.co.itcen.mysite.service, kr.co.itcen.mysite.repository, kr.co.itcen.mysite.aspect">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Repository" />
 		<context:include-filter type="annotation"
