@@ -1,7 +1,5 @@
 package kr.co.itcen.mysite.service;
 
-import java.sql.SQLException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +24,9 @@ public class UserService {
 	public Boolean existUser(String email) {
 		// TODO Auto-generated method stub
 		return userDao.get(email) != null;
+	}
+	
+	public UserVo getUser(Long no) {
+		return userDao.get(no);
 	}
 }

@@ -64,6 +64,7 @@ public class BoardController {
 		vo.setUserNo(userNo);
 		
 		boardService.write(vo);
+		//왜  / 의 의미가 contextpath의 의미를 가질까(mysite3)
 		return "redirect:/board";
 	}
 	

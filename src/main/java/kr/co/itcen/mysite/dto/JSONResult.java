@@ -1,4 +1,4 @@
-package kr.co.itcen.mystie.dto;
+package kr.co.itcen.mysite.dto;
 
 public class JSONResult {
 	

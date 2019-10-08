@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import kr.co.itcen.mystie.dto.JSONResult;
+import kr.co.itcen.mysite.dto.JSONResult;
 
 //컨트롤러가 아님.
 @ControllerAdvice

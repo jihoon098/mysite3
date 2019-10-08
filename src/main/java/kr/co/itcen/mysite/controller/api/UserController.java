@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.itcen.mysite.dto.JSONResult;
 import kr.co.itcen.mysite.service.UserService;
-import kr.co.itcen.mystie.dto.JSONResult;
 
 @Controller("userApiController")
 @RequestMapping("/api/user")
